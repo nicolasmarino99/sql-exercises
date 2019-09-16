@@ -57,3 +57,23 @@ JOIN casting ON casting.movieid = movie.id
 JOIN actor ON casting.actorid = actor.id
 WHERE casting.ord = 1 AND movie.id IN (
 SELECT movieid FROM casting WHERE actorid = 179)
+--Obtain a list, in alphabetical order, of actors who've had at least 30 starring roles
+SELECT DISTINCT actor.name
+FROM actor
+JOIN casting ON casting.actorid = actor.id
+WHERE casting.ord = 1 AND casting.actorid IN
+(SELECT COUNT(movieid)
+FROM casting
+GROUP BY actorid
+HAVING COUNT(movieid) >= 30
+)
+ORDER BY actor.name
+--List the films released in the year 1978 ordered by the number of actors in the cast, then by title
+SELECT movie.title, COUNT(actorid)
+FROM movie
+JOIN casting ON casting.movieid = movie.id
+JOIN actor ON casting.actorid = actor.id
+WHERE movie.yr = 1978
+GROUP BY movie.title
+ORDER BY COUNT(actorid) DESC, movie.title
+
