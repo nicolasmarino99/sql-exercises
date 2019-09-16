@@ -1,2 +1,9 @@
 # sql-exercises
-See the exercise in https://sqlzoo.net/wiki/SELECT_basics
+
+Practicing [sql-exercises](https://sqlzoo.net/wiki/SELECT_basics)
+
+## Authors
+
+[@nicolasmarino99](https://github.com/nicolasmarino99/)
+
+
